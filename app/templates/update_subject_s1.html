@@ -1,0 +1,14 @@
+{% extends "layout.html" %} {% block title %} Select Teacher{% endblock %} {%
+block body %}
+<h1>Select Teacher</h1>
+<ul>
+  {% for teacher in teachers %}
+  <li>
+    <a href="{{ url_for('Update_subject_s2',teacher_id=teacher.id)}}">
+      Full name: {{teacher.fullname}} Email: {{teacher.email}} Phone:
+      {{teacher.phone}}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

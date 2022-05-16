@@ -1,0 +1,14 @@
+{% extends "layout.html" %} {% block title %} sinh vien {% endblock %} {% block
+body %}
+<h1>Name: {{user.code}} ma: {{user.role}}</h1>
+
+<ul>
+  {% for student in students %}
+  <li>
+    fullname: {{student.fullname}} gender: {{student.gender}} address:
+    {{student.address}}
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

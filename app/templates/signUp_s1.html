@@ -1,0 +1,34 @@
+{% extends "layout.html" %} {% block title %} Sign Up {% endblock %} {% block
+body %}
+<h1>Sign up new user</h1>
+<form action="{{ url_for('signUp_result') }}" method="post">
+  <div class="form-group">
+    name:
+    <input type="text" class="form-control" name="code" placeholder="name" />
+  </div>
+  <div class="form-group">
+    password:
+    <input
+      type="password"
+      class="form-control"
+      name="password"
+      placeholder="password"
+    />
+  </div>
+  <div class="form-group">
+    rePassword:
+    <input
+      type="password"
+      class="form-control"
+      name="rePassword"
+      placeholder="rePassword"
+    />
+  </div>
+  <div class="form-group">
+    code: <input class="form-control" name="role" placeholder="role" />
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary">Sign up</button>
+  </div>
+</form>
+{% endblock %}

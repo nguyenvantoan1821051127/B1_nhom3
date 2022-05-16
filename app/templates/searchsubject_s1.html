@@ -1,0 +1,15 @@
+{% extends "layout.html" %} {% block title %} User {% endblock %} {% block body
+%}
+<h1>All user</h1>
+
+<ul>
+  {% for teacher in teachers %}
+  <li>
+    <a href="{{ url_for('searchsubject_s2', teacher_id=teacher.id) }}">
+      Name: {{ teacher.fullname }} email: {{ teacher.email }}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

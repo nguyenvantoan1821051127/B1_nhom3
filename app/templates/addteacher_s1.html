@@ -1,0 +1,27 @@
+{% extends "layout.html" %} {% block title %} Student {% endblock %} {% block
+body %}
+<h1>Add new student</h1>
+<form action="{{ url_for('addteacher_s2') }}" method="post">
+  <div class="table">
+    <label for="fullname">fullname</label>
+    <input name="fullname" />
+  </div>
+  <div class="form-group">
+    <label for="phone">Phone</label>
+    <input type="text" name="phone" />
+  </div>
+  <div class="form-group">
+    <input type="radio" name="gender" value="male" />
+    <label for="male">male</label>
+    <input type="radio" name="gender" value="female" />
+    <label for="female">female</label>
+  </div>
+  <div class="form-group">
+    <label for="email">email</label>
+    <input name="email" />
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary">Add Teeacher</button>
+  </div>
+</form>
+{% endblock %}

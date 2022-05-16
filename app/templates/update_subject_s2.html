@@ -1,0 +1,33 @@
+{% extends "layout.html" %} 
+{% block title %} sinh vien {% endblock %} 
+{% block body %}
+
+<h1>Full name: {{teacher.fullname}} Email: {{teacher.email}} Phone:
+    {{teacher.phone}}</h1>
+<h2>Update Subject</h2>
+<div class="container" ,margin-left: 0px>
+    <table class="table">
+        <tr>
+            <th>Subject_ID</th>
+            <th>Môn học</th>
+            <th>Số tín chỉ</th>
+            <th>Kì học</th>
+            <th>Teacher_ID</th>
+        </tr>
+
+        {% for subject in subjects %}
+        <tr>
+            <form action="{{ url_for('Update_subject_s3') }}" method="post">
+                <td> <input name="subject_id" value="{{subject.id}}"></td></br>
+                <td> <input name="name" value="{{subject.name}}"></td>
+                <td> <input name="credit_number" value="{{subject.credit_number}}"></td>
+				<td> <input name="semester" value="{{subject.semester}}"></td>
+                <td> <input name="teacher_id" value="{{subject.teacher_id}}"></td>
+                <td><button class="btn btn-primary">Update</button></td>
+
+            </form>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

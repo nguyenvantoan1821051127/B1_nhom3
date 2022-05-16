@@ -1,0 +1,14 @@
+{% extends "layout.html" %} {% block title %} sinh vien {% endblock %} {% block
+body %}
+<h1>Tên Giáo viên: {{ teacher.fullname }} email: {{ teacher.email }}</h1>
+
+<ul>
+  {% for subject in subjects %}
+  <li>
+    Môn học: {{subject.name}} Số tín chỉ: {{subject.credit_number}} Năm học:
+    {{subject.semester}}
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

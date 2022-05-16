@@ -1,0 +1,14 @@
+{% extends "layout.html" %} {% block title %} change student {% endblock %} {%
+block body%}
+<h1>change student</h1>
+<ul>
+  {% for student in students %}
+  <li>
+    <a href="{{ url_for('updatestudent_s2', studentid=student.id) }}">
+      Name: {{ student.fullname }} address: {{ student.address }}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

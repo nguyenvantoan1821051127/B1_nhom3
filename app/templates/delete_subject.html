@@ -1,0 +1,28 @@
+{% extends "layout.html" %} {% block title %} Delete Subject {% endblock %} {%
+block body%}
+<h1>Delete Subject</h1>
+<form action="{{ url_for('delete_subject_s2') }}" method="POST">
+  <table>
+    <tr>
+      <th>#</th>
+      <th>ID</th>
+      <th>Môn học</th>
+      <th>Số tín chỉ</th>
+      <th>Kì học</th>
+      <!-- <th>update student</th> -->
+    </tr>
+    {% for subject in subjects %}
+    <tr>
+      <td>
+        <input type="checkbox" value="{{subject.id}}" name="subject_ids" />
+      </td>
+      <td>{{subject.id}}</td>
+      <td>{{subject.name}}</td>
+      <td>{{subject.credit_number}}</td>
+      <td>{{subject.semester}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <button>delete</button>
+</form>
+{% endblock %}
