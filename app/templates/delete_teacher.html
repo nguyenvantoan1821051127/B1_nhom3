@@ -1,0 +1,29 @@
+{% extends "layout.html" %} {% block title %} change teacher {% endblock %} {%
+block body%}
+<h1>Change Teacher</h1>
+<form action="{{ url_for('delete_teacher_s2') }}" method="POST">
+  <table class="table">
+    <tr>
+      <th></th>
+      <th>TeacherID</th>
+      <th>Fullname</th>
+      <th>Gender</th>
+      <th>Phone</th>
+      <th>Email</th>
+    </tr>
+    {% for teacher in teachers %}
+    <tr>
+      <td>
+        <input type="checkbox" value="{{teacher.id}}" name="teacherids" />
+      </td>
+      <td>{{teacher.id}}</td>
+      <td>{{teacher.fullname}}</td>
+      <td>{{teacher.gender}}</td>
+      <td>{{teacher.phone}}</td>
+      <td>{{teacher.email}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <button style="margin-left: 250px">DELETE</button>
+</form>
+{% endblock %}

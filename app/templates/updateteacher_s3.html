@@ -1,0 +1,14 @@
+{% extends "layout.html" %} {% block title %} change teacher {% endblock %} {%
+block body%}
+<h1>change teacher</h1>
+<ul>
+  {% for teacher in teachers %}
+  <li>
+    <a href="{{ url_for('updateteacher_s2', teacherid=teacher.id) }}">
+      Name: {{ teacher.fullname }} address: {{ teacher.address }}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

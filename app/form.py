@@ -1,7 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, RadioField
-from wtforms.validators import DataRequired, Length, ValidationError, EqualTo, InputRequired
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, RadioField, FloatField
+from wtforms.validators import DataRequired, Length, ValidationError, EqualTo, InputRequired, NumberRange
 from app.models import User
+
+
+# ----------Toàn----------
 
 
 class signUpForm(FlaskForm):
@@ -40,3 +43,58 @@ class addTeacher(FlaskForm):
     phone = StringField('Phone ', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired()])
     submit = SubmitField('Sign Up')
+
+# ----------Việt----------
+
+
+class FormUpdateTranscripts(FlaskForm):
+    score_C = FloatField(
+        "Điểm C",
+        validators=[
+            DataRequired(),
+            NumberRange(
+                min=0, max=10, message="Vui lòng nhập giá trị của điểm từ 0 đến 10"
+            ),
+            # Length(max=3),
+        ],
+        render_kw={"step": "0.1"},
+    )
+    score_B = FloatField(
+        "Điểm B",
+        validators=[
+            DataRequired(),
+            NumberRange(
+                min=0, max=10, message="Vui lòng nhập giá trị của điểm từ 0 đến 10"
+            ),
+            # Length(max=3),
+        ],
+        render_kw={"step": "0.1"},
+    )
+    score_A = FloatField(
+        "Điểm A",
+        validators=[
+            DataRequired(),
+            NumberRange(
+                min=0, max=10, message="Vui lòng nhập giá trị của điểm từ 0 đến 10"
+            ),
+            # Length(max=3),
+        ],
+        render_kw={"step": "0.1"},
+    )
+    submit = SubmitField("Xác nhận")
+
+    # Valtdate các điểm khi submit
+    def validate_score_C(self, score_C):
+        score_C = float(score_C.data)
+        if score_C < 0 or score_C > 10:
+            raise ValidationError("Vui lòng nhập giá trị của điểm từ 0 đến 10")
+
+    def validate_score_B(self, score_B):
+        score_B = float(score_B.data)
+        if score_B < 0 or score_B > 10:
+            raise ValidationError("Vui lòng nhập giá trị của điểm từ 0 đến 10")
+
+    def validate_score_A(self, score_A):
+        score_A = float(score_A.data)
+        if score_A < 0 or score_A > 10:
+            raise ValidationError("Vui lòng nhập giá trị của điểm từ 0 đến 10")

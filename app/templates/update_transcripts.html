@@ -1,0 +1,25 @@
+<!-- prettier-ignore -->
+{% extends "layout.html" %}
+
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block body %}
+<h1>{{ title }}</h1>
+<form action="" method="post">
+  <div>
+    {{ form.hidden_tag() }} {% for field in form %}
+    <tr>
+      <th>{{ field.label(class=" col-form-label")}}</th>
+      <td>{{ field(class="form-control") }}</td>
+      {% for error in field.errors %}
+      <span style="color: red">[{{ error }}]</span>
+      {% endfor %}
+    </tr></br>
+    {% endfor %}
+  </div>
+</form>
+
+{% endblock %}

@@ -18,45 +18,53 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
-    {% if current_user.is_authenticated %} hi{{current_user.fullname}}!
-    <a href="{{ url_for('logout') }}">Login</a>
-    {% endif %}
-    <ul>
-      <li><a href="{{ url_for('index') }}">Main</a></li>
-      {% if not current_user.if_authenticated %}
-
-      <li><a href="{{ url_for('wtf_singUp') }}"> Sign up</a></li>
-      <li><a href="{{ url_for('login') }}">Login</a></li>
-      {% endif %}
-      <li>
-        <a href="{{ url_for('addstudent_s1') }}">Add new Student</a>
-      </li>
-      <li>
-        <a href="{{ url_for('delete_student_s1') }}">Delete Student</a>
-      </li>
-      <li>
-        <a href="{{ url_for('updatestudent_s1') }}">Update Student</a>
-      </li>
-      <li>
-        <a href="{{ url_for('addsubject_s1') }}">Add new subject</a>
-      </li>
-      <li>
-        <a href="{{ url_for('delete_subject_s1') }}">Delete subject</a>
-      </li>
-      <li>
-        <a href="{{ url_for('Update_subject_s1') }}">Update subject</a>
-      </li>
-      <li>
-        <a href="{{ url_for('searchsubject_s1') }}">search subject</a>
-      </li>
-    </ul>
     <div class="container">
-      <header>{% block bodyTitle %} {% endblock %}</header>
+      <header
+        class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom"
+      >
+        <a
+          href="/"
+          class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none"
+          ><span class="fs-4">Trang chủ</span>
+        </a>
+
+        <ul
+          class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0"
+        ></ul>
+        <div class="col-md-3 text-end">
+          {% if current_user.is_authenticated %} Chào {{current_user.name}}
+          <a
+            href="{{url_for('logout')}}"
+            class="btn btn-outline-danger me-2"
+            role="button"
+            >Đăng xuất</a
+          >
+
+          {% else %}
+          <a
+            href="{{ url_for('login') }}"
+            class="btn btn-outline-primary me-2"
+            role="button"
+            >Đăng nhập
+          </a>
+
+          <a
+            href="{{ url_for('wtf_singUp') }}"
+            class="btn btn-primary btn"
+            role="button"
+            >Đăng kí
+          </a>
+          {% endif %}
+        </div>
+      </header>
+    </div>
+
+    <div class="container">
       <div
         class="container d-flex flex-column align-items-center justify-content-center"
         style="min-height: calc(100vh - 97px)"
       >
-        <div class="container">{% block body %} {% endblock %}</div>
+        {% block body %}{% endblock %}
       </div>
       <!-- Bootstrap Bundle with Popper -->
     </div>
@@ -64,6 +72,14 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
+    ></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
     ></script>
   </body>
 </html>

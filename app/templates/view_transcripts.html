@@ -1,0 +1,128 @@
+<!-- prettier-ignore -->
+{% extends "layout.html" %}
+
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+
+{% block body %}
+  <h2>Thông tin sinh viên</h2>
+  <table class="table table-borderless table-sm width-fit-content">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+          <th scope="row">Mã sinh viên</th>
+          <td>{{student.id}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Họ tên</th>
+          <td>{{student.fullname}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Ngày sinh</th>
+          <td>{{student.dob}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Giới tính</th>
+          <td>
+            {% if student.gender=='male' %}
+              Nam 
+            {% else %}
+              Nữ
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Địa chỉ</th>
+          <td>{{student.address}}</td>
+        </tr>
+    </tbody>
+  </table>
+
+  <h2>Bảng điểm</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">STT</th>
+        <th scope="col">Mã môn học</th>
+        <th scope="col">Tên môn học</th>
+        <th scope="col">Số tín chỉ</th>
+        <th scope="col">Điểm C</th>
+        <th scope="col">Điểm B</th>
+        <th scope="col">Điểm A</th>
+        <th scope="col">Điểm tổng kết học kì</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for transcript in transcripts %}
+      <tr>
+        <th scope="row">{{loop.index}}</th>
+        <td>{{transcript.subject_id}}</td>
+        {% for subject in subjects %}
+          {% if subject.id == transcript.subject_id %}
+          <td>{{subject.name}}</td>
+          <td>{{subject.credit_number}}</td>
+          {% endif %}{% endfor %}
+        <td>{{transcript.score_C}}</td>
+        <td>{{transcript.score_B}}</td>
+        <td>{{transcript.score_A}}</td>
+        <th scope="row">{{transcript.summation_points}}</th>
+        <td>
+          <a
+            href="{{url_for('update_transcripts', student_id = student.id, transcript_id = transcript.id)}}"
+            class="btn btn-primary max-width-content"
+            role="button"
+            >
+            {% if transcript.summation_points %}
+              Sửa điểm
+            {% else %}
+              Nhập điểm
+            {% endif %}
+          </a>
+        </td>
+        <td>
+          <a
+            href="{{url_for('delete_transscripts', student_id = student.id, transcript_id = transcript.id)}}"
+            class="btn btn-danger max-width-content"
+            role="button"
+            >Xóa
+          </a>
+        </td>
+      </tr>
+      {% else %}
+      <div>Sinh viên chưa có môn học nào</div>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="mt-3">
+    <a
+      href="{{url_for('create_transcripts', student_id = student.id)}}"
+      class="btn btn-outline-primary"
+      role="button"
+      >Thêm môn học cho sinh viên
+    </a>
+    <a
+      href="{{url_for('view_list_students')}}"
+      class="btn btn-outline-secondary"
+      role="button"
+      >Quay lại
+    </a>
+  </div>
+
+<!-- prettier-ignore -->
+  {% with messages = get_flashed_messages() %}
+    {% if messages[0] %} 
+      <input type="hidden" id="hiddenElement" value="{{messages[0]}}"></input>
+      <script>
+        alert(document.getElementById('hiddenElement').value);
+      </script>
+    {% endif %}
+  {% endwith %}
+{% endblock %}

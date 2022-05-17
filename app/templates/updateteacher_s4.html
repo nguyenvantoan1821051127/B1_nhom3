@@ -1,0 +1,42 @@
+{% extends "layout.html" %} 
+{% block title %} update teacher {% endblock %} 
+{% block body %}
+
+<h1>Update teacher </h1>
+<div class="container" ,margin-left: 0px>
+    <form action="{{ url_for('updateteacher_s3') }}" method="post">
+        <table>
+            <tr>
+                <th>teacher_ID</th>
+                <th>fullname</th>
+                <th>phone</th>
+                <th>gender</th>
+                <th>email</th>
+            </tr>
+            {% for teacher in teachers %}
+            <tr>
+                <td> <input name="teacher_id" value="{{teacher.id}}"></td></br>
+                <td> <input name="fullname" value="{{teacher.fullname}}"></td>
+                <td> <input name="phone" value="{{teacher.phone}}"></td>
+                <td> 
+                    {% if teacher.gender == 'male' %}
+                      <input type="radio" name="gender" value="male" checked="checked" />
+                      <label for="male">male</label>
+                      <input type="radio" name="gender" value="female" />
+                      <label for="female">female</label>
+                      
+                    {% else %}
+                      <input type="radio" name="gender" value="male"  />
+                      <label for="male">male</label>
+                      <input type="radio" name="gender" value="female"checked="checked" />
+                      <label for="female">female</label>
+                    {% endif %}
+                    </td>
+                <td> <input name="email" value="{{teacher.email}}"></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <button>Update</button>
+    </form>
+</div>
+{% endblock %}
